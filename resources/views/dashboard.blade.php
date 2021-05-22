@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h3 class="display-6">Dashboard</h3>
+    <center><h3 class="display-6">Dashboard</h3></center>
 
     @if (session()->has('status'))
         <h4 class="text-danger">{{ session('status') }}</h4>

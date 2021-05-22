@@ -9,6 +9,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
         <style>
             body {
@@ -17,12 +19,14 @@
         </style>
 
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
-    <body class="antialiased">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <body class="" style="background-color: #fff;">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Tax Calculator</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ Route('home') }}">Home</a>
@@ -40,8 +44,7 @@
                             <a class="nav-link" href="{{ Route('calculate-tax') }}">Calculate Tax</a>
                         </li>
                     @endauth
-                </ul>
-                <ul class="navbar-nav ml-auto">
+
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ Route('login') }}">Login</a>
