@@ -103,4 +103,20 @@ class AdminController extends Controller
 
         return back();
     }
+
+    public function update_tax_slabs(Request $request){
+        $response = array('status'=>0, 'message'=>'Missing Parameters');
+
+        if(isset($request->slab_min) && isset($request->slab_percent) && !empty($request->slab_max) && !empty($request->slab_id)){
+            $update_slab_query = DB::table('tax_slabs')->where('id', $request->slab_id)->update(['min_amount' => $request->slab_min,'max_amount' => $request->slab_max,'tax_percent' => $request->slab_percent,'updated_at' => $this->current_date_time]);
+
+            if($update_slab_query){
+                $response = array('status'=>1, 'message'=>'Tax slab updated successfully');
+            } else {
+                $response = array('status'=>1, 'message'=>'unable to update tax slab');
+            }
+        }
+
+        return response()->json($response);
+    }
 }

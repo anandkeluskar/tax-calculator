@@ -125,6 +125,62 @@
                         alert('Enter correct value.');
                     }
                 });
+
+                $(".btn-update-income-param").on('click', function(e){
+                    var param_id = $(this).attr('param_id');
+                    var param_name_key = "#param_name_"+param_id;
+                    var param_name = $(param_name_key).val();
+
+                    if(param_id != null && param_id != '' && param_name != null && param_name != ''){
+                        $.ajax({
+                            url: "{{ route('admin_update_params') }}",
+                            data: {"_token": "{{ csrf_token() }}", "param_id": param_id, "param_name": param_name},
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function(data){
+                                alert(data.message);
+                                if(data.status == 1){
+                                    location.reload();
+                                }
+                            },
+                            error: function(err){
+                                console.log('admin_update_deduct_param Error:', err);
+                            }
+                        });
+                    } else {
+                        alert('Enter correct value.');
+                    }
+                });
+
+                $(".btn-update-tax-slab").on('click', function(e){
+                    var slab_id = $(this).attr('slab_id');
+                    var slab_min_key = "#slab_min_"+slab_id;
+                    var slab_max_key = "#slab_max_"+slab_id;
+                    var slab_percent_key = "#slab_percent_"+slab_id;
+                    var slab_min = $(slab_min_key).val();
+                    var slab_max = $(slab_max_key).val();
+                    var slab_percent = $(slab_percent_key).val();
+
+                    if(slab_id != null && slab_id != '' && slab_min != null && slab_min != '' && slab_max != null && slab_max != '' && slab_percent != null && slab_percent != ''){
+                        $.ajax({
+                            url: "{{ route('admin_update_tax_slabs') }}",
+                            data: {"_token": "{{ csrf_token() }}", "slab_id": slab_id, "slab_min": slab_min, "slab_max": slab_max, "slab_percent": slab_percent},
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function(data){
+                                alert(data.message);
+                                if(data.status == 1){
+                                    location.reload();
+                                }
+                            },
+                            error: function(err){
+                                console.log('admin_update_deduct_param Error:', err);
+                            }
+                        });
+                    } else {
+                        alert('Enter correct value.');
+                    }
+                });
             });
         </script>
     </body>

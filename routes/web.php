@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TaxCalculatorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
@@ -21,14 +22,16 @@ Route::post('/register', [RegisterController::class, 'register_user'])->name('re
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/request/{ref_no}', [DashboardController::class, 'view_tax_request'])->name('view_tax_request');
 
-Route::get('/calculate-tax', [DashboardController::class, 'calculate_tax'])->name('calculate-tax');
-Route::post('/calculate-tax', [DashboardController::class, 'calculate_tax_submit'])->name('calculate-tax-submit');
+Route::get('/calculate-tax', [TaxCalculatorController::class, 'index'])->name('calculate-tax');
+Route::post('/calculate-tax', [TaxCalculatorController::class, 'calculate_tax'])->name('calculate-tax-submit');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::post('/admin/params/add', [AdminController::class, 'add_parameters'])->name('admin_add_params');
 Route::post('/admin/params/update', [AdminController::class, 'update_parameters'])->name('admin_update_params');
 Route::post('/admin/param-options/add', [AdminController::class, 'add_parameter_option'])->name('admin_add_param_option');
 Route::post('/admin/tax-slabs/add', [AdminController::class, 'add_tax_slabs'])->name('admin_add_tax_slabs');
+Route::post('/admin/tax-slabs/update', [AdminController::class, 'update_tax_slabs'])->name('admin_update_tax_slabs');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
